@@ -46,7 +46,7 @@ class Data {
   final int? page;
   final int? pagesCount;
   final int? rowsCount;
-  final List<Row>? rows;
+  final List<Row_>? rows;
 
   Data({
     this.page,
@@ -59,7 +59,7 @@ class Data {
     int? page,
     int? pagesCount,
     int? rowsCount,
-    List<Row>? rows,
+    List<Row_>? rows,
   }) =>
       Data(
         page: page ?? this.page,
@@ -78,7 +78,7 @@ class Data {
         rowsCount: json["rows_count"],
         rows: json["rows"] == null
             ? []
-            : List<Row>.from(json["rows"]!.map((x) => Row.fromMap(x))),
+            : List<Row_>.from(json["rows"]!.map((x) => Row_.fromMap(x))),
       );
 
   Map<String, dynamic> toMap() => {
@@ -90,7 +90,7 @@ class Data {
       };
 }
 
-class Row {
+class Row_ {
   final String? name;
   final int? indicatorToMoId;
   final int? parentId;
@@ -98,7 +98,7 @@ class Row {
   final String? parentName;
   final String? description;
 
-  Row({
+  Row_({
     this.name,
     this.indicatorToMoId,
     this.parentId,
@@ -107,7 +107,7 @@ class Row {
     this.description,
   });
 
-  Row copyWith({
+  Row_ copyWith({
     String? name,
     int? indicatorToMoId,
     int? parentId,
@@ -115,7 +115,7 @@ class Row {
     String? parentName,
     String? description,
   }) =>
-      Row(
+      Row_(
         name: name ?? this.name,
         indicatorToMoId: indicatorToMoId ?? this.indicatorToMoId,
         parentId: parentId ?? this.parentId,
@@ -124,11 +124,11 @@ class Row {
         description: description ?? this.description,
       );
 
-  factory Row.fromJson(String str) => Row.fromMap(json.decode(str));
+  factory Row_.fromJson(String str) => Row_.fromMap(json.decode(str));
 
   String toJson() => json.encode(toMap());
 
-  factory Row.fromMap(Map<String, dynamic> json) => Row(
+  factory Row_.fromMap(Map<String, dynamic> json) => Row_(
         name: json["name"],
         indicatorToMoId: json["indicator_to_mo_id"],
         parentId: json["parent_id"],

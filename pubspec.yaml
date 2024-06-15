@@ -36,6 +36,7 @@ dependencies:
   cupertino_icons: ^1.0.6
   flutter_riverpod: ^2.5.1
   dio: ^5.4.3+1
+  # flutter_boardview: ^0.2.1
 
 dev_dependencies:
   flutter_test:
@@ -74,14 +75,14 @@ flutter:
   # "family" key with the font family name, and a "fonts" key with a
   # list giving the asset and other descriptors for the font. For
   # example:
-  fonts:
-    - family: Gilroy
-      fonts:
-        - asset: assets/fonts/gilroy-regular.ttf
-          weight: 400
-        - asset: assets/fonts/gilroy-medium.ttf
-          weight: 500
-        - asset: assets/fonts/gilroy-semibold.ttf
-          weight: 600
+  # fonts:
+  #   - family: Gilroy
+  #     fonts:
+  #       - asset: assets/fonts/gilroy-regular.ttf
+  #         weight: 400
+  #       - asset: assets/fonts/gilroy-medium.ttf
+  #         weight: 500
+  #       - asset: assets/fonts/gilroy-semibold.ttf
+  #         weight: 600
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/custom-fonts/#from-packages

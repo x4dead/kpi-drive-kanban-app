@@ -1,14 +1,16 @@
-﻿import 'package:flutter_riverpod/flutter_riverpod.dart';
+﻿import 'package:dio/dio.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:kpi_drive_kanban_app/data/rest/rest_client.dart';
 import 'package:kpi_drive_kanban_app/models/models.dart';
 import 'package:kpi_drive_kanban_app/modules/signal_service/board_ref/board_state.dart';
+import 'package:kpi_drive_kanban_app/ui/home_page/home_page.dart';
 
 class BoardNotifier extends StateNotifier<BoardStateRef> {
   late final RestClient _restClient;
   BoardNotifier() : super(BoardStateRef()) {
     _restClient = RestClient();
   }
-  Future getIndicators(RequestBody? requestBody) async {
+  Future getIndicators({RequestBody? requestBody}) async {
     try {
       final response = await _restClient.getIndicators(
         requestBody: requestBody ??
@@ -23,17 +25,27 @@ class BoardNotifier extends StateNotifier<BoardStateRef> {
                 responseFields:
                     'name,indicator_to_mo_id,parent_id,order,parent_name,description'),
       );
-      state = state.copyWith(moIndicators: response);
-    } catch (e) {
-      rethrow;
+      final list = HomePageFunctions.getColumns(response);
+      state = state.copyWith(moIndicators: response, columns: list);
+    } on DioException catch (e) {
+      throw Exception(e.message);
     }
   }
 
   Future saveIndicators(RequestBody requestBody) async {
     try {
       await _restClient.saveIndicator(requestBody: requestBody);
-    } catch (e) {
-      rethrow;
+    } on DioException catch (e) {
+      throw Exception(e.message);
     }
+  }
+
+  void setPosition(
+      int listIndex, int itemIndex, int oldListIndex, int oldItemIndex) {
+    final list = [...state.columns!];
+    final item = list[oldListIndex][oldItemIndex];
+    list[oldListIndex].removeAt(oldItemIndex);
+    list[listIndex].insert(itemIndex, item);
+    state = state.copyWith(columns: list);
   }
 }
