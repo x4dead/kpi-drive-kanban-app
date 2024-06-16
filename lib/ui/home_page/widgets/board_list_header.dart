@@ -1,25 +1,39 @@
 ﻿part of '../home_page.dart';
 
 class BoardListHeader extends ConsumerWidget {
-  const BoardListHeader(this.parentName, {super.key});
-  final String parentName;
+  const BoardListHeader(this.boardIndex, {super.key});
+  final int boardIndex;
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final theme = Theme.of(context);
+    final boardPod = ref.watch(River.boardPod);
     return Expanded(
       child: Padding(
         padding: const EdgeInsets.all(12),
         child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             Text(
-              parentName,
+              boardPod.columns?[boardIndex].isEmpty ?? true
+                  ? ''
+                  : boardPod.columns?[boardIndex].first.parentName ?? '',
               style: theme.textTheme.titleLarge?.copyWith(color: Colors.white),
             ),
-            Card(
-                // child: Text(boardViewController
-                //     .state.listStates[i].itemStates.length
-                //     .toString()),
-                )
+            SizedBox(
+              height: 36,
+              width: 36,
+              child: Card(
+                color: Colors.grey.shade800,
+                child: Center(
+                  child: Text(
+                    boardPod.columns?[boardIndex].isEmpty ?? true
+                        ? ''
+                        : boardPod.columns![boardIndex].length.toString(),
+                    style: TextStyle(color: Colors.grey.shade300),
+                  ),
+                ),
+              ),
+            )
           ],
         ),
       ),

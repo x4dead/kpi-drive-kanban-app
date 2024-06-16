@@ -8,20 +8,14 @@ class MyBoard extends ConsumerStatefulWidget {
 }
 
 class _MyBoardConsumerState extends ConsumerState<MyBoard> {
-  BoardViewController boardViewController = BoardViewController();
-
-  // List<BoardList> _lists = [];
+  // BoardViewController boardViewController = BoardViewController();
 
   @override
   Widget build(BuildContext context) {
     final boardPod = ref.watch(River.boardPod);
     List<BoardList> lists = List.generate(boardPod.columns?.length ?? 0, (i) {
       return BoardList(
-        header: [
-          BoardListHeader(boardPod.columns?[i].isEmpty ?? true
-              ? ''
-              : boardPod.columns?[i].first.parentName ?? ''),
-        ],
+        header: [BoardListHeader(i)],
         draggable: false,
         headerBackgroundColor: Colors.grey[850],
         boardView: BoardViewState(),
@@ -29,7 +23,9 @@ class _MyBoardConsumerState extends ConsumerState<MyBoard> {
         items: List.generate(boardPod.columns![i].length, (itemIndex) {
           return BoardItem(
             item: BoardItemCard(
-                boardPod.columns![i][itemIndex], boardViewController),
+              boardPod.columns![i][itemIndex],
+              // boardViewController
+            ),
             onDropItem: (listIndex, itemIndex, oldListIndex, oldItemIndex,
                     state) async =>
                 await HomePageFunctions.setItemPosition(listIndex, itemIndex,
@@ -40,7 +36,7 @@ class _MyBoardConsumerState extends ConsumerState<MyBoard> {
     });
     return BoardView(
       lists: lists,
-      boardViewController: boardViewController,
+      // boardViewController: boardViewController,
       dragDelay: 100,
       width: 300,
     );

@@ -25,7 +25,7 @@ class HomePageFunctions {
       SnackBar(
         behavior: SnackBarBehavior.floating,
         backgroundColor: isError ? Colors.red[300] : Colors.lightGreen[300],
-        duration: const Duration(seconds: 2),
+        duration: const Duration(seconds: 1),
         content: Row(
           children: [
             Icon(
@@ -80,11 +80,7 @@ class HomePageFunctions {
       } catch (e) {
         if (context.mounted) {
           boardNotifier.setPosition(
-            oldListIndex!,
-            oldItemIndex!,
-            listIndex!,
-            itemIndex!,
-          );
+              oldListIndex!, oldItemIndex!, listIndex!, itemIndex!);
 
           _showSnackBar(context, isError: true);
         }

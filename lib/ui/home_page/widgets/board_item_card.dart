@@ -1,9 +1,9 @@
 ﻿part of '../home_page.dart';
 
 class BoardItemCard extends ConsumerWidget {
-  const BoardItemCard(this.item, this.boardViewController, {super.key});
+  const BoardItemCard(this.item, {super.key});
   final Row_ item;
-  final BoardViewController boardViewController;
+  // final BoardViewController boardViewController;
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final theme = Theme.of(context).textTheme;
