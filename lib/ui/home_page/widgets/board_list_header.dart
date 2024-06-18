@@ -14,9 +14,7 @@ class BoardListHeader extends ConsumerWidget {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             Text(
-              boardPod.columns?[boardIndex].isEmpty ?? true
-                  ? ''
-                  : boardPod.columns?[boardIndex].first.parentName ?? '',
+              boardPod.columns?[boardIndex].boardName ?? '',
               style: theme.textTheme.titleLarge?.copyWith(color: Colors.white),
             ),
             SizedBox(
@@ -26,9 +24,8 @@ class BoardListHeader extends ConsumerWidget {
                 color: Colors.grey.shade800,
                 child: Center(
                   child: Text(
-                    boardPod.columns?[boardIndex].isEmpty ?? true
-                        ? ''
-                        : boardPod.columns![boardIndex].length.toString(),
+                    boardPod.columns![boardIndex].tasks?.length.toString() ??
+                        '',
                     style: TextStyle(color: Colors.grey.shade300),
                   ),
                 ),

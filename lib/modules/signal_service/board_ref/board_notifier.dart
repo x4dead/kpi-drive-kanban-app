@@ -43,9 +43,11 @@ class BoardNotifier extends StateNotifier<BoardStateRef> {
   void setPosition(
       int listIndex, int itemIndex, int oldListIndex, int oldItemIndex) {
     final list = [...state.columns!];
-    final item = list[oldListIndex][oldItemIndex];
-    list[oldListIndex].removeAt(oldItemIndex);
-    list[listIndex].insert(itemIndex, item);
+    final item = list[oldListIndex]
+        .tasks?[oldItemIndex]
+        .copyWith(parentId: list[listIndex].boardId);
+    list[oldListIndex].tasks?.removeAt(oldItemIndex);
+    list[listIndex].tasks?.insert(itemIndex, item!);
     state = state.copyWith(columns: list);
   }
 }

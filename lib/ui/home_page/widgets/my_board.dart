@@ -19,11 +19,30 @@ class _MyBoardConsumerState extends ConsumerState<MyBoard> {
         draggable: false,
         headerBackgroundColor: Colors.grey[850],
         boardView: BoardViewState(),
+        footer: Container(
+          padding: const EdgeInsets.all(12),
+          child: Row(
+            children: [
+              Icon(
+                Icons.add,
+                color: Colors.grey.shade300,
+              ),
+              const SizedBox(width: 10),
+              Text(
+                'New Item',
+                style: TextStyle(
+                  color: Colors.grey.shade300,
+                ),
+              ),
+            ],
+          ),
+        ),
         backgroundColor: Colors.grey[850],
-        items: List.generate(boardPod.columns![i].length, (itemIndex) {
+        items:
+            List.generate(boardPod.columns![i].tasks?.length ?? 0, (itemIndex) {
           return BoardItem(
             item: BoardItemCard(
-              boardPod.columns![i][itemIndex],
+              boardPod.columns![i].tasks![itemIndex],
               // boardViewController
             ),
             onDropItem: (listIndex, itemIndex, oldListIndex, oldItemIndex,
@@ -34,11 +53,14 @@ class _MyBoardConsumerState extends ConsumerState<MyBoard> {
         }),
       );
     });
-    return BoardView(
-      lists: lists,
-      // boardViewController: boardViewController,
-      dragDelay: 100,
-      width: 300,
+    return Padding(
+      padding: const EdgeInsets.only(top: 10),
+      child: BoardView(
+        lists: lists,
+        // boardViewController: boardViewController,
+        dragDelay: 100,
+        width: 300,
+      ),
     );
   }
 }

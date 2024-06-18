@@ -2,14 +2,14 @@
 
 class BoardStateRef {
   final MoIndicators? moIndicators;
-  final List<List<Row_>>? columns;
+  final List<BoardModel>? columns;
 
   BoardStateRef({
     this.moIndicators,
     this.columns,
   });
   BoardStateRef copyWith(
-      {MoIndicators? moIndicators, List<List<Row_>>? columns}) {
+      {MoIndicators? moIndicators, List<BoardModel>? columns}) {
     return BoardStateRef(
       moIndicators: moIndicators ?? this.moIndicators,
       columns: columns ?? this.columns,

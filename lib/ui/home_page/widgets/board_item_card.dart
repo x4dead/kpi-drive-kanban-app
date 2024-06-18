@@ -31,6 +31,12 @@ class BoardItemCard extends ConsumerWidget {
                 item.name ?? '',
                 style: theme.bodyMedium?.copyWith(color: Colors.grey.shade50),
               ),
+              if (item.description?.isNotEmpty ?? false)
+                Text(
+                  item.description ?? '',
+                  style: theme.bodySmall?.copyWith(color: Colors.grey.shade400),
+                  maxLines: 3,
+                ),
               const SizedBox(height: 5),
               Text(
                 "ID ${item.indicatorToMoId}",

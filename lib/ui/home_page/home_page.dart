@@ -6,7 +6,6 @@ import 'package:kpi_drive_kanban_app/modules/signal_service/river/river.dart';
 import 'package:kpi_drive_kanban_app/ui/home_page/widgets/flutter_boardview/board_item.dart';
 import 'package:kpi_drive_kanban_app/ui/home_page/widgets/flutter_boardview/board_list.dart';
 import 'package:kpi_drive_kanban_app/ui/home_page/widgets/flutter_boardview/boardview.dart';
-import 'package:kpi_drive_kanban_app/ui/home_page/widgets/flutter_boardview/boardview_controller.dart';
 
 part 'home_page_functions.dart';
 part 'widgets/my_board.dart';

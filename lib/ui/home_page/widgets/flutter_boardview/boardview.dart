@@ -498,7 +498,7 @@ class BoardViewState extends State<BoardView>
             //move right
             moveRight();
           }
-          if (dy! < topListY! + 70) {
+          if (dy! < topListY! + 150) {
             //scroll up
             if (listStates[draggedListIndex!].boardListController.hasClients &&
                 !isScrolling) {
@@ -514,7 +514,7 @@ class BoardViewState extends State<BoardView>
                               .boardListController
                               .position
                               .pixels -
-                          15,
+                          10,
                       duration: const Duration(milliseconds: 10),
                       curve: Curves.ease)
                   .whenComplete(() {
@@ -560,7 +560,7 @@ class BoardViewState extends State<BoardView>
               }
             }
           }
-          if (dy! > tempBottom! - 70) {
+          if (dy! > tempBottom! - 150) {
             //scroll down
 
             if (listStates[draggedListIndex!].boardListController.hasClients) {
@@ -576,7 +576,7 @@ class BoardViewState extends State<BoardView>
                               .boardListController
                               .position
                               .pixels +
-                          5,
+                          10,
                       duration: const Duration(milliseconds: 10),
                       curve: Curves.ease)
                   .whenComplete(() {

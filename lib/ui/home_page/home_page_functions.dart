@@ -1,21 +1,22 @@
 ﻿part of 'home_page.dart';
 
 class HomePageFunctions {
-  static List<List<Row_>> getColumns(MoIndicators? moIndicators) {
-    final List<List<Row_>> columns = [];
+  static List<BoardModel> getColumns(MoIndicators? moIndicators) {
+    final List<BoardModel> columns = [];
     for (Row_ row in moIndicators?.data?.rows ?? []) {
       int parentId = row.parentId!;
       // Проверяем, есть ли уже список для этого parentId
       var column = columns.firstWhere(
-          (col) => col.isNotEmpty && col.first.parentId == parentId,
-          orElse: () => []);
-      if (column.isEmpty) {
+          (col) => (col.tasks?.isNotEmpty ?? false) && col.boardId == parentId,
+          orElse: () => BoardModel());
+      if (column.boardId == null) {
         // Если нет, создаем новый список и добавляем его в columns
-        column = <Row_>[];
+        column =
+            BoardModel(boardId: parentId, boardName: row.parentName, tasks: []);
         columns.add(column);
       }
       // Добавляем строку в соответствующий список
-      column.add(row);
+      column.tasks?.add(row);
     }
     return columns;
   }
@@ -60,17 +61,21 @@ class HomePageFunctions {
       try {
         boardNotifier.setPosition(
             listIndex!, itemIndex!, oldListIndex!, oldItemIndex!);
+        final newPos = boardPod.columns?[listIndex].tasks?[itemIndex];
         await ref
             .read(River.boardPod.notifier)
             .saveIndicators(
               RequestBody(
-                  // periodStart: DateTime(2023, 09, 30),
-                  // periodEnd: DateTime(2024, 01, 31),
-                  // periodKey: 'month',
-                  // authUserId: 2,
-                  // fieldName1:boardPod.columns![]
-                  // ,fieldValue1: ,fieldName2: ,fieldValue2: ,indicatorToMoId: ,
-                  ),
+                periodStart: DateTime(2023, 09, 30),
+                periodEnd: DateTime(2024, 01, 31),
+                periodKey: 'month',
+                authUserId: 2,
+                fieldName1: 'parent_id',
+                fieldValue1: newPos?.parentId,
+                fieldName2: 'order',
+                fieldValue2: itemIndex + 1,
+                indicatorToMoId: newPos?.indicatorToMoId,
+              ),
             )
             .then((v) {
           if (context.mounted) {
