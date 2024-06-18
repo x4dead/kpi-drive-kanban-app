@@ -22,11 +22,20 @@ class BoardListHeader extends ConsumerWidget {
               width: 36,
               child: Card(
                 color: Colors.grey.shade800,
-                child: Center(
-                  child: Text(
-                    boardPod.columns![boardIndex].tasks?.length.toString() ??
-                        '',
-                    style: TextStyle(color: Colors.grey.shade300),
+                child: AnimatedSwitcher(
+                  reverseDuration: Durations.long1,
+                  duration: Durations.long1,
+                  switchOutCurve: Curves.easeIn,
+                  transitionBuilder: (child, animation) =>
+                      FadeTransition(opacity: animation, child: child),
+                  child: Center(
+                    key: ValueKey<int>(
+                        boardPod.columns![boardIndex].tasks?.length ?? 0),
+                    child: Text(
+                      boardPod.columns![boardIndex].tasks?.length.toString() ??
+                          '0',
+                      style: TextStyle(color: Colors.grey.shade300),
+                    ),
                   ),
                 ),
               ),

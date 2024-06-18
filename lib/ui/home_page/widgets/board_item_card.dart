@@ -3,7 +3,6 @@
 class BoardItemCard extends ConsumerWidget {
   const BoardItemCard(this.item, {super.key});
   final Row_ item;
-  // final BoardViewController boardViewController;
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final theme = Theme.of(context).textTheme;

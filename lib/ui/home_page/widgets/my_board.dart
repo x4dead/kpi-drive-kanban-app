@@ -8,8 +8,6 @@ class MyBoard extends ConsumerStatefulWidget {
 }
 
 class _MyBoardConsumerState extends ConsumerState<MyBoard> {
-  // BoardViewController boardViewController = BoardViewController();
-
   @override
   Widget build(BuildContext context) {
     final boardPod = ref.watch(River.boardPod);
@@ -41,10 +39,7 @@ class _MyBoardConsumerState extends ConsumerState<MyBoard> {
         items:
             List.generate(boardPod.columns![i].tasks?.length ?? 0, (itemIndex) {
           return BoardItem(
-            item: BoardItemCard(
-              boardPod.columns![i].tasks![itemIndex],
-              // boardViewController
-            ),
+            item: BoardItemCard(boardPod.columns![i].tasks![itemIndex]),
             onDropItem: (listIndex, itemIndex, oldListIndex, oldItemIndex,
                     state) async =>
                 await HomePageFunctions.setItemPosition(listIndex, itemIndex,
@@ -57,7 +52,7 @@ class _MyBoardConsumerState extends ConsumerState<MyBoard> {
       padding: const EdgeInsets.only(top: 10),
       child: BoardView(
         lists: lists,
-        // boardViewController: boardViewController,
+        bottomPadding: 5,
         dragDelay: 100,
         width: 300,
       ),
