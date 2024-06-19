@@ -1,7 +1,7 @@
 ﻿import 'package:kpi_drive_kanban_app/models/models.dart';
 
 class BoardModel {
-  final List<Row_>? tasks;
+  final List<Task>? tasks;
   final int? boardId;
   final String? boardName;
   BoardModel({
@@ -11,7 +11,7 @@ class BoardModel {
   });
 
   BoardModel copyWith({
-    List<Row_>? tasks,
+    List<Task>? tasks,
     int? boardId,
     String? boardName,
   }) {

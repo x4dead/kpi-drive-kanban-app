@@ -3,7 +3,7 @@
 class HomePageFunctions {
   static List<BoardModel> getColumns(MoIndicators? moIndicators) {
     final List<BoardModel> columns = [];
-    for (Row_ row in moIndicators?.data?.rows ?? []) {
+    for (Task row in moIndicators?.data?.rows ?? []) {
       int parentId = row.parentId!;
       // Проверяем, есть ли уже список для этого parentId
       var column = columns.firstWhere(

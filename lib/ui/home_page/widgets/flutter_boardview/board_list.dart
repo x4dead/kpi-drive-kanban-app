@@ -21,7 +21,7 @@ class BoardList extends StatefulWidget {
   final bool draggable;
 
   const BoardList({
-    Key? key,
+    super.key,
     this.header,
     this.items,
     this.footer,
@@ -34,7 +34,7 @@ class BoardList extends StatefulWidget {
     this.onTapList,
     this.onStartDragList,
     this.listBuilder,
-  }) : super(key: key);
+  });
 
   final int? index;
 

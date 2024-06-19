@@ -8,8 +8,10 @@ class BoardStateRef {
     this.moIndicators,
     this.columns,
   });
-  BoardStateRef copyWith(
-      {MoIndicators? moIndicators, List<BoardModel>? columns}) {
+  BoardStateRef copyWith({
+    MoIndicators? moIndicators,
+    List<BoardModel>? columns,
+  }) {
     return BoardStateRef(
       moIndicators: moIndicators ?? this.moIndicators,
       columns: columns ?? this.columns,

@@ -52,9 +52,7 @@ class _MyBoardConsumerState extends ConsumerState<MyBoard> {
       padding: const EdgeInsets.only(top: 10),
       child: BoardView(
         lists: lists,
-        bottomPadding: 5,
         dragDelay: 100,
-        width: 300,
       ),
     );
   }

@@ -23,7 +23,7 @@ class BoardItem extends StatefulWidget {
   final bool draggable;
 
   const BoardItem(
-      {Key? key,
+      {super.key,
       this.boardList,
       this.item,
       this.index,
@@ -31,8 +31,7 @@ class BoardItem extends StatefulWidget {
       this.onTapItem,
       this.onStartDragItem,
       this.draggable = true,
-      this.onDragItem})
-      : super(key: key);
+      this.onDragItem});
 
   @override
   State<StatefulWidget> createState() {

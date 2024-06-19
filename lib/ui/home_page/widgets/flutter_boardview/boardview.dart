@@ -18,17 +18,16 @@ class BoardView extends StatefulWidget {
   final OnDropBottomWidget? onDropItemInMiddleWidget;
 
   const BoardView(
-      {Key? key,
+      {super.key,
       this.itemInMiddleWidget,
       this.boardViewController,
       this.dragDelay = 300,
       this.onDropItemInMiddleWidget,
       this.isSelecting = false,
       this.lists,
-      this.width = 280,
+      this.width = 300,
       this.middleWidget,
-      this.bottomPadding})
-      : super(key: key);
+      this.bottomPadding = 5});
 
   @override
   State<StatefulWidget> createState() {

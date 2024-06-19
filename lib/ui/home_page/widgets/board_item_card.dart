@@ -2,7 +2,7 @@
 
 class BoardItemCard extends ConsumerWidget {
   const BoardItemCard(this.item, {super.key});
-  final Row_ item;
+  final Task item;
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final theme = Theme.of(context).textTheme;

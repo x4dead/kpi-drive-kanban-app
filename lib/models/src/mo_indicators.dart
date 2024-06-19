@@ -46,7 +46,7 @@ class Data {
   final int? page;
   final int? pagesCount;
   final int? rowsCount;
-  final List<Row_>? rows;
+  final List<Task>? rows;
 
   Data({
     this.page,
@@ -59,7 +59,7 @@ class Data {
     int? page,
     int? pagesCount,
     int? rowsCount,
-    List<Row_>? rows,
+    List<Task>? rows,
   }) =>
       Data(
         page: page ?? this.page,
@@ -78,7 +78,7 @@ class Data {
         rowsCount: json["rows_count"],
         rows: json["rows"] == null
             ? []
-            : List<Row_>.from(json["rows"]!.map((x) => Row_.fromMap(x))),
+            : List<Task>.from(json["rows"]!.map((x) => Task.fromMap(x))),
       );
 
   Map<String, dynamic> toMap() => {
@@ -90,7 +90,7 @@ class Data {
       };
 }
 
-class Row_ {
+class Task {
   final String? name;
   final int? indicatorToMoId;
   final int? parentId;
@@ -98,7 +98,7 @@ class Row_ {
   final String? parentName;
   final String? description;
 
-  Row_({
+  Task({
     this.name,
     this.indicatorToMoId,
     this.parentId,
@@ -107,7 +107,7 @@ class Row_ {
     this.description,
   });
 
-  Row_ copyWith({
+  Task copyWith({
     String? name,
     int? indicatorToMoId,
     int? parentId,
@@ -115,7 +115,7 @@ class Row_ {
     String? parentName,
     String? description,
   }) =>
-      Row_(
+      Task(
         name: name ?? this.name,
         indicatorToMoId: indicatorToMoId ?? this.indicatorToMoId,
         parentId: parentId ?? this.parentId,
@@ -124,11 +124,11 @@ class Row_ {
         description: description ?? this.description,
       );
 
-  factory Row_.fromJson(String str) => Row_.fromMap(json.decode(str));
+  factory Task.fromJson(String str) => Task.fromMap(json.decode(str));
 
   String toJson() => json.encode(toMap());
 
-  factory Row_.fromMap(Map<String, dynamic> json) => Row_(
+  factory Task.fromMap(Map<String, dynamic> json) => Task(
         name: json["name"],
         indicatorToMoId: json["indicator_to_mo_id"],
         parentId: json["parent_id"],
