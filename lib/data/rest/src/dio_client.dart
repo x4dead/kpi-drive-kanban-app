@@ -58,7 +58,10 @@ class DioClient<T extends Object, K> {
     );
 
     final response = await compute(_sendRequest, params);
-
-    return await CustomCompute<T>().getCompute(response);
+    if (T == String) {
+      return response.data! as T;
+    } else {
+      return await CustomCompute<T>().getCompute(response);
+    }
   }
 }

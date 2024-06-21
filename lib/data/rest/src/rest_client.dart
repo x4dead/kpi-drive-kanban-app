@@ -3,8 +3,6 @@ import 'package:kpi_drive_kanban_app/data/rest/rest_client.dart';
 import 'package:kpi_drive_kanban_app/models/models.dart';
 
 class RestClient extends DioClient {
-  // final _logger = getLogger(RestClient);
-
   Future<MoIndicators> getIndicators({required RequestBody requestBody}) async {
     const String url = '/get_mo_indicators';
 
@@ -26,7 +24,7 @@ class RestClient extends DioClient {
 
     try {
       log('saveIndicator начало запроса');
-      await post(path, data: requestBody.toMapSaveIndicator());
+      await post<String>(path, data: requestBody.toMapSaveIndicator());
 
       log('saveIndicator запрос завершен успешно');
     } catch (e) {

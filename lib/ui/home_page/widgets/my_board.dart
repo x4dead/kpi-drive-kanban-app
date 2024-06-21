@@ -49,7 +49,7 @@ class _MyBoardConsumerState extends ConsumerState<MyBoard> {
       );
     });
     return Padding(
-      padding: const EdgeInsets.only(top: 10),
+      padding: const EdgeInsets.only(top: 5),
       child: BoardView(
         lists: lists,
         dragDelay: 100,

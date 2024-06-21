@@ -222,7 +222,7 @@ class BoardViewState extends State<BoardView>
       int? tempListIndex = draggedListIndex;
       int? tempItemIndex = draggedItemIndex;
       boardViewController
-          .animateTo(draggedListIndex! * widget.width / 1.25,
+          .animateTo(draggedListIndex! * widget.width / 1.1,
               duration: const Duration(milliseconds: 400), curve: Curves.ease)
           .whenComplete(() {
         RenderBox object =
@@ -320,7 +320,7 @@ class BoardViewState extends State<BoardView>
       int? tempListIndex = draggedListIndex;
       int? tempItemIndex = draggedItemIndex;
       boardViewController
-          .animateTo(draggedListIndex! * widget.width / 1.25,
+          .animateTo(draggedListIndex! * widget.width / 1.1,
               duration: const Duration(milliseconds: 400), curve: Curves.ease)
           .whenComplete(() {
         RenderBox object =

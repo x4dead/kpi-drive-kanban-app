@@ -55,12 +55,21 @@ class _HomePageConsumerState extends ConsumerState<HomePage> {
           skipLoadingOnReload: false,
           data: (data) {
             if (moIndicators?.data == null) {
-              return const Text('Пусто');
+              return Center(
+                child: Text(
+                  'Пусто',
+                  style: TextStyle(color: Colors.grey.shade200),
+                ),
+              );
             }
             return const MyBoard();
           },
           error: (e, stackTrace) => Center(
-                child: Text(e.toString(), textAlign: TextAlign.center),
+                child: Text(
+                  e.toString(),
+                  textAlign: TextAlign.center,
+                  style: TextStyle(color: Colors.grey.shade200),
+                ),
               ),
           loading: () => Center(
                   child: CupertinoActivityIndicator(

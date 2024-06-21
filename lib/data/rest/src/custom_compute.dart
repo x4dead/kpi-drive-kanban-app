@@ -16,8 +16,8 @@ class CustomCompute<T> {
   T _parseItem(Map<String, dynamic> jsonData) {
     if (T == MoIndicators) {
       return MoIndicators.fromMap(jsonData) as T;
+    } else {
+      throw 'Error Parsing';
     }
-
-    throw 'Error Parsing';
   }
 }

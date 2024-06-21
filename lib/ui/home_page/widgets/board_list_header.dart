@@ -13,9 +13,12 @@ class BoardListHeader extends ConsumerWidget {
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            Text(
-              boardPod.columns?[boardIndex].boardName ?? '',
-              style: theme.textTheme.titleLarge?.copyWith(color: Colors.white),
+            Flexible(
+              child: Text(
+                boardPod.columns?[boardIndex].boardName ?? '',
+                style:
+                    theme.textTheme.titleLarge?.copyWith(color: Colors.white),
+              ),
             ),
             SizedBox(
               height: 36,

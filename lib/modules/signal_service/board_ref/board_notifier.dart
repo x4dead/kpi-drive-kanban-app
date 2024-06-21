@@ -15,12 +15,12 @@ class BoardNotifier extends StateNotifier<BoardStateRef> {
       final response = await _restClient.getIndicators(
         requestBody: requestBody ??
             RequestBody(
-                periodStart: DateTime(2023, 09, 30),
-                periodEnd: DateTime(2024, 01, 31),
+                periodStart: DateTime(2024, 05, 1),
+                periodEnd: DateTime(2024, 05, 31),
                 periodKey: 'month',
                 authUserId: 2,
                 behaviourKey: 'task',
-                requestedMoId: 476,
+                requestedMoId: 478,
                 withResult: false,
                 responseFields:
                     'name,indicator_to_mo_id,parent_id,order,parent_name,description'),
@@ -45,7 +45,7 @@ class BoardNotifier extends StateNotifier<BoardStateRef> {
     final list = [...state.columns!];
     final item = list[oldListIndex]
         .tasks?[oldItemIndex]
-        .copyWith(parentId: list[listIndex].boardId);
+        .copyWith(parentId: list[listIndex].boardId, order: itemIndex + 1);
     list[oldListIndex].tasks?.removeAt(oldItemIndex);
     list[listIndex].tasks?.insert(itemIndex, item!);
     state = state.copyWith(columns: list);

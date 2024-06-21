@@ -25,7 +25,7 @@ class HomePageFunctions {
     ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(
         behavior: SnackBarBehavior.floating,
-        backgroundColor: isError ? Colors.red[300] : Colors.lightGreen[300],
+        backgroundColor: isError ? Colors.red[300] : Colors.lightGreen[400],
         duration: const Duration(seconds: 1),
         content: Row(
           children: [
@@ -62,22 +62,35 @@ class HomePageFunctions {
         boardNotifier.setPosition(
             listIndex!, itemIndex!, oldListIndex!, oldItemIndex!);
         final newPos = boardPod.columns?[listIndex].tasks?[itemIndex];
-        await ref
-            .read(River.boardPod.notifier)
-            .saveIndicators(
-              RequestBody(
-                periodStart: DateTime(2023, 09, 30),
-                periodEnd: DateTime(2024, 01, 31),
-                periodKey: 'month',
-                authUserId: 2,
-                fieldName1: 'parent_id',
-                fieldValue1: newPos?.parentId,
-                fieldName2: 'order',
-                fieldValue2: itemIndex + 1,
-                indicatorToMoId: newPos?.indicatorToMoId,
+        await Future.wait([
+          ref.read(River.boardPod.notifier).saveIndicators(
+                RequestBody(
+                  periodStart: DateTime(2024, 05, 1),
+                  periodEnd: DateTime(2024, 05, 31),
+                  periodKey: 'month',
+                  authUserId: 2,
+                  // fieldName1: 'parent_id',
+                  // fieldValue1: newPos?.parentId,
+                  fieldName1: 'order',
+                  fieldValue1: itemIndex + 1,
+                  indicatorToMoId: newPos?.indicatorToMoId,
+                ),
               ),
-            )
-            .then((v) {
+          if (oldListIndex != listIndex)
+            ref.read(River.boardPod.notifier).saveIndicators(
+                  RequestBody(
+                    periodStart: DateTime(2024, 05, 1),
+                    periodEnd: DateTime(2024, 05, 31),
+                    periodKey: 'month',
+                    authUserId: 2,
+                    fieldName1: 'parent_id',
+                    fieldValue1: newPos?.parentId,
+                    // fieldName2: 'order',
+                    // fieldValue2: itemIndex + 1,
+                    indicatorToMoId: newPos?.indicatorToMoId,
+                  ),
+                ),
+        ]).then((v) {
           if (context.mounted) {
             _showSnackBar(context);
           }

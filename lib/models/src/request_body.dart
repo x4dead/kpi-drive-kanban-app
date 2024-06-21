@@ -78,20 +78,22 @@ class RequestBody {
         "response_fields": responseFields,
         "auth_user_id": authUserId,
       });
+  FormData toMapSaveIndicator() => FormData.fromMap(
+        {
+          "period_start":
+              "${periodStart!.year.toString().padLeft(4, '0')}-${periodStart!.month.toString().padLeft(2, '0')}-${periodStart!.day.toString().padLeft(2, '0')}",
+          "period_end":
+              "${periodEnd!.year.toString().padLeft(4, '0')}-${periodEnd!.month.toString().padLeft(2, '0')}-${periodEnd!.day.toString().padLeft(2, '0')}",
+          "period_key": periodKey,
+          "indicator_to_mo_id": indicatorToMoId,
+          "field_name": fieldName1,
+          "field_value": fieldValue1,
+          // "field_name": fieldName2,
+          // "field_value": fieldValue2,
+          "auth_user_id": authUserId,
+        },
+      );
 
-  Map<String, dynamic> toMapSaveIndicator() => {
-        "period_start":
-            "${periodStart!.year.toString().padLeft(4, '0')}-${periodStart!.month.toString().padLeft(2, '0')}-${periodStart!.day.toString().padLeft(2, '0')}",
-        "period_end":
-            "${periodEnd!.year.toString().padLeft(4, '0')}-${periodEnd!.month.toString().padLeft(2, '0')}-${periodEnd!.day.toString().padLeft(2, '0')}",
-        "period_key": periodKey,
-        "auth_user_id": authUserId,
-        "indicator_to_mo_id": indicatorToMoId,
-        "field_name1": fieldName1,
-        "field_value1": fieldValue1,
-        "field_name2": fieldName2,
-        "field_value2": fieldValue2,
-      };
   Map<String, dynamic> toMap() => {
         "period_start":
             "${periodStart!.year.toString().padLeft(4, '0')}-${periodStart!.month.toString().padLeft(2, '0')}-${periodStart!.day.toString().padLeft(2, '0')}",
